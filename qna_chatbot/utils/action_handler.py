@@ -43,8 +43,7 @@ def user_provide_difficulty_level(body: dict) -> dict:
     ]
     response_data = format_dialogflow_response(
         [
-            'Here is your first question.'
-            f'{random_qna[0]["question"][0]}'
+            f'Here is your first question. {random_qna[0]["question"][0]}'
         ],
         output_contexts
     )
@@ -65,8 +64,7 @@ def default_welcome_intent(body: dict) -> dict:
     ]
     response_data = format_dialogflow_response(
         [
-            'Welcome to the Qizebot.',
-            'Please select a difficulty level between a number 1 to 5.'
+            'Welcome to the Qizebot. Please select a difficulty level between a number 1 to 5.'
         ],
         output_contexts
     )
@@ -109,9 +107,7 @@ def user_provides_answer(body: dict) -> dict:
             ]
             response_data = format_dialogflow_response(
                 [
-                    f'Great, that is a right answer. High five!.',
-                    f'Your score is {score} out of {config.NUMB_QUE_TO_ASK}.',
-                    f'To start the quiz again please choose difficulty level of the question between a number {min(config.DIFFICULTY_LEVELS)} to {max(config.DIFFICULTY_LEVELS)}.'
+                    f'Great, that is a right answer. High five!. Your score is {score} out of {config.NUMB_QUE_TO_ASK}. To start the quiz again please choose difficulty level of the question between a number {min(config.DIFFICULTY_LEVELS)} to {max(config.DIFFICULTY_LEVELS)}.'
                 ],
                 output_contexts
             )
@@ -125,9 +121,7 @@ def user_provides_answer(body: dict) -> dict:
         ]
         response_data = format_dialogflow_response(
             [
-                f'Oops, that is a wrong answer.\nThe correct answer is {correct_answer}.',
-                f'Your score is {score} out of {config.NUMB_QUE_TO_ASK}.',
-                f'To start the quiz again please choose difficulty level of the question between a number {min(config.DIFFICULTY_LEVELS)} to {max(config.DIFFICULTY_LEVELS)}.'
+                f'Oops, that is a wrong answer.\nThe correct answer is {correct_answer}. Your score is {score} out of {config.NUMB_QUE_TO_ASK}. To start the quiz again please choose difficulty level of the question between a number {min(config.DIFFICULTY_LEVELS)} to {max(config.DIFFICULTY_LEVELS)}.'
             ],
             output_contexts
         )
@@ -149,17 +143,14 @@ def user_provides_answer(body: dict) -> dict:
     if answer_flag:
         response_data = format_dialogflow_response(
             [
-                f'Great, that is a right answer. Here is your next question.',
-                f'({counter + 1}) {random_qna[counter]["question"][0]}'
+                f'Great, that is a right answer. Here is your next question. ({counter + 1}) {random_qna[counter]["question"][0]}'
             ],
             output_contexts
         )
         return response_data
     response_data = format_dialogflow_response(
         [
-            f'Oops, that is a wrong answer. The correct answe is {correct_answer}.',
-            'Here is your next question.',
-            f'({counter + 1}) {random_qna[counter]["question"][0]}'
+            f'Oops, that is a wrong answer. The correct answe is {correct_answer}. Here is your next question. ({counter + 1}) {random_qna[counter]["question"][0]}'
         ],
         output_contexts
     )
